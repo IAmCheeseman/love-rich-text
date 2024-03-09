@@ -35,8 +35,18 @@ RichText.addEffect("wave", function(str, text, args, info)
   text:setPosition(0, y)
 end)
 
+RichText.addEffect("shake", function(str, text, args, info)
+  local freq = args.freq or 12
+  local amp = args.amp or 3
+  local xOffset = args.xOffset or 100
+  local t = time * freq + info.index
+  local x = love.math.noise(t) * 2 - 1
+  local y = love.math.noise(t + xOffset) * 2 - 1
+  text:setPosition(x * amp, y * amp)
+end)
+
 local format = [[
-  {color r=1 g=0 b=1}Hello, {/color}{wave freq=4 amp=7}world{/wave}!
+  {color r=1 g=0 b=1}Hello, {/color}{shake}world{/shake}!
   {scale xy=2}SCALED{/scale} {rotate deg=12}Rotated!{/rotate}
   {skew x=-1}Skew'd!{/skew}
 ]]
