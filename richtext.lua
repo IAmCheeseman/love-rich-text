@@ -38,7 +38,10 @@ end
 function RichText.parse(format)
   local tformat = {}
 
-  for match, text in format:gmatch("({.-})([^{]*)") do
+  for text, match in format:gmatch("([^{]*)({.-})") do
+    if text then
+      table.insert(tformat, text)
+    end
     if match then
       local inner = match:sub(2, -2)
       local args = {}
@@ -51,9 +54,6 @@ function RichText.parse(format)
         args[k] = tonumber(v)
       end
       table.insert(tformat, args)
-    end
-    if text then
-      table.insert(tformat, text)
     end
   end
 

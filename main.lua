@@ -46,9 +46,7 @@ RichText.addEffect("shake", function(str, text, args, info)
 end)
 
 local format = [[
-  {color r=1 g=0 b=1}Hello, {/color}{shake}world{/shake}!
-  {scale xy=2}SCALED{/scale} {rotate deg=12}Rotated!{/rotate}
-  {skew x=-1}Skew'd!{/skew}
+  Hello, {shake}{skew x=-0.2}Chee{/skew}...{/shake}
 ]]
 local text = RichText.new(love.graphics.newFont(20), format)
 
