@@ -75,12 +75,12 @@ function RichText.new(font, format)
   return instance
 end
 
-function RichText:setFgColor(r, g, b, a)
-  self.fgColor = {r, g, b, a}
+function RichText:setColor(r, g, b, a)
+  self.color = {r, g, b, a}
 end
 
-function RichText:getFgColor()
-  return unpack(self.fgColor)
+function RichText:getColor()
+  return unpack(self.color)
 end
 
 function RichText:setPosition(x, y)
@@ -139,7 +139,7 @@ function RichText:update()
         self.skewx = 0
         self.skewy = 0
         self.rotation = 0
-        self.fgColor = {1, 1, 1, 1}
+        self.color = {1, 1, 1, 1}
 
         local info = {
           char = char,
@@ -151,7 +151,7 @@ function RichText:update()
         end
 
         self.text:add(
-          {self.fgColor, char},
+          {self.color, char},
           x + self.charx, self.chary,
           self.rotation,
           self.scalex, self.scaley,

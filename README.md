@@ -16,7 +16,7 @@ local RichText = require("richtext")
 -- -- `index` - the index of your char.
 -- -- `length` - the length of the substring your effect is being applied to.
 RichText.addEffect("color", function(text, args, info)
-  text:setFgColor(args.r, args.g, args.b, args.a or 1)
+  text:setColor(args.r, args.g, args.b, args.a or 1)
 end)
 
 -- {color r=0 g=1 b=1} would use the effect defined above to change the color

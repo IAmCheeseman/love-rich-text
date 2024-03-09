@@ -5,7 +5,7 @@ local RichText = require("richtext")
 local time = 0
 
 RichText.addEffect("color", function(text, args, info)
-  text:setFgColor(args.r, args.g, args.b, args.a or 1)
+  text:setColor(args.r, args.g, args.b, args.a or 1)
 end)
 
 RichText.addEffect("scale", function(text, args, info)
@@ -46,7 +46,7 @@ RichText.addEffect("shake", function(text, args, info)
 end)
 
 local format = [[
-  Hello, {shake}{skew x=-0.2}Chee{/skew}...{/shake}
+  Hello, {shake}{skew x=-0.2}{color r=1 b=0 g=0}Chee{/color}{/skew}...{/shake}
 ]]
 local text = RichText.new(love.graphics.newFont(20), format)
 
