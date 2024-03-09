@@ -31,3 +31,7 @@ function love.draw()
   text:draw(5, 5)
 end
 ```
+
+Here is how the above snippet looks:
+![image](https://github.com/IAmCheeseman/love-rich-text/assets/64710123/1e365668-9415-484e-8f0a-2ca7e9b03b6f)
+
