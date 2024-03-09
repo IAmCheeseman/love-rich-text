@@ -1,6 +1,7 @@
 # Rich Text
 
 A simple library to use rich text effects.
+Largely untested, so if you could use it and tell me about any bugs, that'd be great.
 
 ## API
 
