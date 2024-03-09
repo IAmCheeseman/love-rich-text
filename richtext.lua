@@ -28,6 +28,10 @@ RichText.__index = RichText
 local effects = {}
 
 function RichText.addEffect(name, fn)
+  if effects[name] then
+    error("Effect '" .. name .. "' already exists.")
+  end
+
   effects[name] = fn
 end
 
@@ -119,8 +123,18 @@ function RichText:render()
     elseif type(effectOrStr) == "table" then
       local effectName = effectOrStr[1]
       if effectName:sub(1, 1) == "/" then
-        currentEffects[effectName:sub(2, -1)] = nil
+        effectName = effectName:sub(2, -1)
+
+        if not currentEffects[effectName] then
+          error("Effect '" .. effectName .. "' does not have a matching opening tag.")
+        end
+
+        currentEffects[effectName] = nil
       else
+        if not effects[effectName] then
+          error("Effect '" .. effectName .. "' does not exist.")
+        end
+
         currentEffects[effectName] = {
           fn = effects[effectName],
           args = effectOrStr,
