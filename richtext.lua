@@ -31,11 +31,40 @@ function RichText.addEffect(name, fn)
   effects[name] = fn
 end
 
-function RichText.new(font, ...)
+function RichText.parse(format)
+  local tformat = {}
+
+  for match, text in format:gmatch("({.-})([^{]*)") do
+    if match then
+      local inner = match:sub(2, -2)
+      local args = {}
+      local name = inner:match("^[/%a]+")
+      args[1] = name
+      for k, v in inner:gmatch("(%w-)=([%w%.]+)") do
+        if not v:match("%d*%.?%d*") then
+          error("Invalid effect arg '" .. k .. "'. Numbers are the only supported type.")
+        end
+        args[k] = tonumber(v)
+      end
+      table.insert(tformat, args)
+    end
+    if text then
+      table.insert(tformat, text)
+    end
+  end
+
+  return tformat
+end
+
+function RichText.new(font, format)
   local instance = setmetatable({}, RichText)
 
   instance.font = font
-  instance.format = {...}
+  if type(format) == "table" then
+    instance.format = format
+  elseif type(format) == "string" then
+    instance.format = RichText.parse(format)
+  end
   instance:render()
 
   return instance

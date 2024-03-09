@@ -18,8 +18,8 @@ RichText.addEffect("wave", function(str, text, args, info)
   text:setPosition(0, y)
 end)
 
-local text = RichText.new(love.graphics.newFont(20),
-  {"color", r=1, g=0, b=1},"Hello, ",{"/color"},{"wave", freq=4, amp=7},"world",{"/wave"},"!")
+local format = "{color r=1 g=0 b=1}Hello, {/color}{wave freq=4 amp=7}world{/wave}!"
+local text = RichText.new(love.graphics.newFont(20), format)
 
 function love.update(dt)
   time = time + dt
