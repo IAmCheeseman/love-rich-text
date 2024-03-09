@@ -44,8 +44,8 @@ function RichText.parse(format)
       local args = {}
       local name = inner:match("^[/%a]+")
       args[1] = name
-      for k, v in inner:gmatch("(%w-)=([%w%.]+)") do
-        if not v:match("^%d*%.?%d*$") then
+      for k, v in inner:gmatch("(%w-)=([%w%.%-]+)") do
+        if not v:match("^%-?%d*%.?%d*$") then
           error("Invalid effect arg '" .. k .. "'. Numbers are the only supported type.")
         end
         args[k] = tonumber(v)

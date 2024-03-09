@@ -38,7 +38,7 @@ end)
 local format = [[
   {color r=1 g=0 b=1}Hello, {/color}{wave freq=4 amp=7}world{/wave}!
   {scale xy=2}SCALED{/scale} {rotate deg=12}Rotated!{/rotate}
-  {skew x=1}Skew'd!{/skew}
+  {skew x=-1}Skew'd!{/skew}
 ]]
 local text = RichText.new(love.graphics.newFont(20), format)
 
