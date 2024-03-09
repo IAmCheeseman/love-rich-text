@@ -1,4 +1,4 @@
----@diagnostic disable: duplicate-set-field
+
 
 local RichText = require("richtext")
 
