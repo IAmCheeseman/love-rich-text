@@ -21,7 +21,8 @@ end)
 -- {color r=0 g=1 b=1} would use the effect defined above to change the color
 -- {/color would end the effect, and return to white}
 local text = RichText.new(
-  love.graphics.newFont(20), "{color r=0 g=1 b=1}Hello! {/color}My name is {color r=1 g=0 b=0}iamcheeseman{/color}!")
+  love.graphics.newFont(20),
+  "{color r=0 g=1 b=1}Hello! {/color}My name is {color r=1 g=0 b=0}iamcheeseman{/color}!")
 
 -- If you don't like the parsing, you can just pass a table instead:
 --[[
