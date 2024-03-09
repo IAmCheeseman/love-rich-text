@@ -91,6 +91,32 @@ function RichText:getPosition()
   return self.charx, self.chary
 end
 
+function RichText:setScale(x, y)
+  self.scalex = x
+  self.scaley = y
+end
+
+function RichText:getScale()
+  return self.scalex, self.scaley
+end
+
+function RichText:setSkew(x, y)
+  self.skewx = x
+  self.skewy = y
+end
+
+function RichText:getSkew()
+  return self.skewx, self.skewy
+end
+
+function RichText:setRotation(rotation)
+  self.rotation = rotation
+end
+
+function RichText:getRotation()
+  return self.rotation
+end
+
 function RichText:render()
   self.text = love.graphics.newText(self.font)
 
@@ -107,6 +133,11 @@ function RichText:render()
         local char = effectOrStr:sub(i, i)
         self.charx = 0
         self.chary = 0
+        self.scalex = 1
+        self.scaley = 1
+        self.skewx = 0
+        self.skewy = 0
+        self.rotation = 0
         self.fgColor = {1, 1, 1, 1}
 
         local info = {
@@ -117,8 +148,13 @@ function RichText:render()
           effect.fn(char, self, effect.args, info)
         end
 
-        self.text:add({self.fgColor, char}, x + self.charx, self.chary)
-        x = x + self.font:getWidth(char)
+        self.text:add(
+          {self.fgColor, char},
+          x + self.charx, self.chary,
+          self.rotation,
+          self.scalex, self.scaley,
+          0, 0, self.skewx, self.skewy)
+        x = x + self.font:getWidth(char) * self.scalex
       end
     elseif type(effectOrStr) == "table" then
       local effectName = effectOrStr[1]
