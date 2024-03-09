@@ -9,13 +9,13 @@ Largely untested, so if you could use it and tell me about any bugs, that'd be g
 local RichText = require("richtext")
 
 -- A simple effect to color a section of text.
--- `char` is the character you're running your effect on.
 -- `text` is the rich text object.
 -- `args` are the arguments passed to your effect.
 -- `info` is a table containing the following info:
+-- -- `char` is the character you're running your effect on.
 -- -- `index` - the index of your char.
 -- -- `length` - the length of the substring your effect is being applied to.
-RichText.addEffect("color", function(char, text, args, info)
+RichText.addEffect("color", function(text, args, info)
   text:setFgColor(args.r, args.g, args.b, args.a or 1)
 end)
 

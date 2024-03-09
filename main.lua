@@ -4,28 +4,28 @@ local RichText = require("richtext")
 
 local time = 0
 
-RichText.addEffect("color", function(str, text, args, info)
+RichText.addEffect("color", function(text, args, info)
   text:setFgColor(args.r, args.g, args.b, args.a or 1)
 end)
 
-RichText.addEffect("scale", function(str, text, args, info)
+RichText.addEffect("scale", function(text, args, info)
   local scalex = args.x or args.xy
   local scaley = args.y or scalex
   text:setScale(scalex, scaley)
 end)
 
-RichText.addEffect("skew", function(str, text, args, info)
+RichText.addEffect("skew", function(text, args, info)
   local skewx = args.x or args.xy or 0
   local skewy = args.y or 0
   text:setSkew(skewx, skewy)
 end)
 
-RichText.addEffect("rotate", function(str, text, args, info)
+RichText.addEffect("rotate", function(text, args, info)
   local rot = math.rad(args.deg) or args.rad
   text:setRotation(rot)
 end)
 
-RichText.addEffect("wave", function(str, text, args, info)
+RichText.addEffect("wave", function(text, args, info)
   local amp = args.amp or 2
   local freq = args.freq or 5
 
@@ -35,7 +35,7 @@ RichText.addEffect("wave", function(str, text, args, info)
   text:setPosition(0, y)
 end)
 
-RichText.addEffect("shake", function(str, text, args, info)
+RichText.addEffect("shake", function(text, args, info)
   local freq = args.freq or 12
   local amp = args.amp or 3
   local xOffset = args.xOffset or 100
@@ -53,7 +53,7 @@ local text = RichText.new(love.graphics.newFont(20), format)
 function love.update(dt)
   time = time + dt
 
-  text:render()
+  text:update()
 end
 
 function love.draw()

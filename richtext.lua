@@ -69,7 +69,8 @@ function RichText.new(font, format)
   elseif type(format) == "string" then
     instance.format = RichText.parse(format)
   end
-  instance:render()
+  instance.text = love.graphics.newText(font)
+  instance:update()
 
   return instance
 end
@@ -117,8 +118,8 @@ function RichText:getRotation()
   return self.rotation
 end
 
-function RichText:render()
-  self.text = love.graphics.newText(self.font)
+function RichText:update()
+  self.text:clear()
 
   local currentEffects = {}
 
@@ -141,11 +142,12 @@ function RichText:render()
         self.fgColor = {1, 1, 1, 1}
 
         local info = {
+          char = char,
           index = i,
           length = #effectOrStr
         }
         for _, effect in pairs(currentEffects) do
-          effect.fn(char, self, effect.args, info)
+          effect.fn(self, effect.args, info)
         end
 
         self.text:add(
