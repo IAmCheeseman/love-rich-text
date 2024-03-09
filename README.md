@@ -33,8 +33,8 @@ local text = RichText.new(
   "My name is ", {"color" r=1 g=0 b=0}, "iamcheeseman", {"/color"}, "!"})
 ]]
 
--- If you need to redraw your text, for whatever reason (like if you have a wave effect), then you can do so with `:render()`:
-text:render()
+-- If you need to redraw your text, like, if you had an effect that changes over time, like a rainbow, then:
+text:update()
 
 function love.draw()
   text:draw(5, 5)
